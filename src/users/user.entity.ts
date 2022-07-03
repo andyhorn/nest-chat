@@ -1,5 +1,6 @@
 import { Chat } from "src/chat/entities/chat.entity";
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Room } from "src/rooms/room.entity";
+import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class User {
@@ -14,9 +15,14 @@ export class User {
     })
     socketId: string;
 
+    @Column({
+        nullable: true
+    })
+    @ManyToOne(() => Room, room => room.users)
+    room: Room;
+
     @OneToMany(() => Chat, chat => chat.user, {
-        onDelete: "CASCADE",
-        cascade: true
+        onDelete: 'SET NULL',
     })
     messages: Chat[];
 

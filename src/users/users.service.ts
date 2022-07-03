@@ -21,6 +21,13 @@ export class UsersService {
         return user;
     }
 
+    public async findAllInRoom(roomId: string): Promise<User[]> {
+        return this.usersRepository.createQueryBuilder()
+            .select('*')
+            .where('roomId = :roomId', { id: roomId })
+            .getMany();
+    }
+
     public async findBySocketId(socketId: string): Promise<User> {
         const user = await this.usersRepository.findOneBy({ socketId });
 

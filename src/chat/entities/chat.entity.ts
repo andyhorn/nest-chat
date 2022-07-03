@@ -7,7 +7,8 @@ export class Chat {
     id: number;
 
     @ManyToOne(() => User, user => user.messages, {
-        onDelete: 'CASCADE'
+        onDelete: 'SET NULL',
+        nullable: true
     })
     user: User;
 

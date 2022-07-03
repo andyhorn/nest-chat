@@ -15,4 +15,18 @@ export class ChatService {
         const newChat = this.chatRepository.create(chat);
         return await this.chatRepository.save(newChat);
     }
+
+    public async findByUser(userId: string): Promise<Chat[]> {
+        return this.chatRepository.createQueryBuilder()
+            .select('*')
+            .where('userId = :userId', { userId })
+            .getMany();
+    }
+
+    public async cleanOrphans(): Promise<void> {
+        await this.chatRepository.createQueryBuilder()
+            .delete()
+            .where('userId = NULL')
+            .execute();
+    }
 }
