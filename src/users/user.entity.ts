@@ -15,10 +15,9 @@ export class User {
     })
     socketId: string;
 
-    @Column({
+    @ManyToOne(() => Room, room => room.users, {
         nullable: true
     })
-    @ManyToOne(() => Room, room => room.users)
     room: Room;
 
     @OneToMany(() => Chat, chat => chat.user, {
