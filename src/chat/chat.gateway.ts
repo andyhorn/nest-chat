@@ -5,7 +5,7 @@ import { RoomsService } from 'src/rooms/rooms.service';
 import { User } from 'src/users/user.entity';
 import { UsersService } from 'src/users/users.service';
 import { ChatService } from './chat/chat.service';
-import { JoinRoomDto } from './dtos/JoinRoom.dto';
+import { JoinRoomDto } from './dtos/join-room.dto';
 import { Chat } from './entities/chat.entity';
 import constants from './utils/constants';
 
